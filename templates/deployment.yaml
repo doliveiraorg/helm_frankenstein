@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frankenstein
+  name: frankenstein
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frankenstein
+  template:
+    metadata:
+      labels:
+        app: frankenstein
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
