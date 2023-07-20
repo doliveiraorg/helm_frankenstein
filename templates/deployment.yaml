@@ -1,20 +1,27 @@
+{{- if .Values.createDeployment }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: frankenstein
-  name: frankenstein
+  {{- include "frankenstein.helmlabels" . | nindent 4 }}
+  name: {{ .Release.Name  }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.deploymentAnnotations }}
+  annotations:
+  {{ toYaml .Values.deploymentAnnotations | indent 4 }}
+  {{- end }}   
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frankenstein
+    {{- include "frankenstein.helmlabels" . | nindent 6 }}     
   template:
     metadata:
       labels:
-        app: frankenstein
+      {{- include "frankenstein.helmlabels" . | nindent 8 }}
     spec:
       containers:
-      - image: nginx
-        name: nginx
+      - name: {{ .Release.Name }}
+        image: {{ .Values.imageFull | default "nginx" }}
+{{ end }}
