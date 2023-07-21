@@ -24,4 +24,16 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.imageFull | default "nginx" }}
+        {{- if .Values.command }}
+        command:
+        {{- range .Values.command }}
+        - {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.args }}
+        args:
+        {{- range .Values.args }}
+        - {{ . | quote }}
+        {{- end }}
+        {{- end }}
 {{ end }}

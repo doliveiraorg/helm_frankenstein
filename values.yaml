@@ -1,3 +1,5 @@
 createDeployment: true
 deploymentAnnotations: {}
 imageFull:
+command:
+args:
