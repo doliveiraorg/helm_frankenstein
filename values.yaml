@@ -3,3 +3,11 @@ deploymentAnnotations: {}
 imageFull:
 command:
 args:
+replicas:
+initContainers:
+containerPortName:
+containerPort:
+extraContainerPorts:
+- name: https
+  containerPort: 443
+  protocol: TCP

@@ -1,18 +1,17 @@
 {{- if .Values.createDeployment }}
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
   {{- include "frankenstein.helmlabels" . | nindent 4 }}
-  name: {{ .Release.Name  }}
   namespace: {{ .Release.Namespace }}
   {{- if .Values.deploymentAnnotations }}
   annotations:
   {{ toYaml .Values.deploymentAnnotations | indent 4 }}
   {{- end }}   
+  name: {{ .Release.Name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas | default 1 }}
   selector:
     matchLabels:
     {{- include "frankenstein.helmlabels" . | nindent 6 }}     
@@ -24,16 +23,8 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.imageFull | default "nginx" }}
-        {{- if .Values.command }}
-        command:
-        {{- range .Values.command }}
-        - {{ . | quote }}
-        {{- end }}
-        {{- end }}
-        {{- if .Values.args }}
-        args:
-        {{- range .Values.args }}
-        - {{ . | quote }}
-        {{- end }}
-        {{- end }}
+        ports:
+        - name: {{ .Values.containerPortName | default "http" }}
+          containerPort: {{ .Values.containerPort | default 80 }}
+          protocol: TCP
 {{ end }}

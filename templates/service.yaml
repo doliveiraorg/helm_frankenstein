@@ -1,0 +1,19 @@
+{{- if .Values.createDeployment }}
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "frankenstein.helmlabels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Release.Name  }}
+spec:
+  ports:
+  - name: http
+    port: {{ .Values.containerPort | default 80 }}
+    protocol: TCP
+    targetPort: {{ .Values.containerPort | default 80 }}
+  selector:
+    {{- include "frankenstein.helmlabels" . | nindent 4 }}
+    app: {{ .Release.Name  }}
+  type: ClusterIP
+{{ end }}
