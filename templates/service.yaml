@@ -4,6 +4,9 @@ kind: Service
 metadata:
   labels:
     {{- include "frankenstein.helmlabels" . | nindent 4 }}
+    {{- if .Values.extraLabels }}
+    {{- toYaml .Values.extraLabels | nindent 4 }}
+    {{- end }}
   namespace: {{ .Release.Namespace }}
   name: {{ .Release.Name  }}
 spec:
@@ -15,5 +18,8 @@ spec:
   selector:
     {{- include "frankenstein.helmlabels" . | nindent 4 }}
     app: {{ .Release.Name  }}
-  type: ClusterIP
+    {{- if .Values.extraLabels }}
+    {{- toYaml .Values.extraLabels | nindent 4 }}
+    {{- end }}
+  type: {{ .Values.serviceType | default "ClusterIP" }}
 {{ end }}
