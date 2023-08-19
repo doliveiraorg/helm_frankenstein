@@ -22,7 +22,7 @@ spec:
       labels:
       {{- include "frankenstein.helmlabels" . | nindent 8 }}
       {{- if .Values.extraLabels }}
-      {{- toYaml .Values.extraLabels | nindent 4 }}
+      {{- toYaml .Values.extraLabels | nindent 8 }}
       {{- end }}
     spec:
       containers:

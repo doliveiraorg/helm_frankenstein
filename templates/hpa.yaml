@@ -1,13 +1,23 @@
-#apiVersion: keda.sh/v1alpha1
-#kind: ScaledObject
-#metadata:
-#  name: cpu-scaledobject
-#  namespace: default
-#spec:
-#  scaleTargetRef:
-#    name: my-deployment
-#  triggers:
-#  - type: cpu
-#    metricType: Utilization # Allowed types are 'Utilization' or 'AverageValue'
-#    metadata:
-#      value: "50"
+{{- if .Values.createDeployment }}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "frankenstein.helmlabels" . | nindent 4 }}
+    {{- if .Values.extraLabels }}
+    {{- toYaml .Values.extraLabels | nindent 4 }}
+    {{- end }}
+spec:
+  scaleTargetRef:
+    name: {{ .Release.Name }}
+  triggers:
+  - type: memory
+    metricType: Utilization
+    metadata:
+      value: {{ .Values.hpaMemoryLimit | default "80" | quote }}    
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: {{ .Values.hpaCPULimit | default "80" | quote }}
+{{- end }}

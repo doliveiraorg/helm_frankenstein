@@ -1,6 +1,5 @@
 createDeployment: true
 extraLabels:
-  foo: bar 
 imageFull:
 command:
 args:
@@ -8,3 +7,5 @@ replicas:
 initContainers:
 containerPortName:
 containerPort:
+hpaMemoryLimit:
+hpaCPULimit:
