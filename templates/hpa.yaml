@@ -11,6 +11,8 @@ metadata:
 spec:
   scaleTargetRef:
     name: {{ .Release.Name }}
+  minReplicaCount: {{ .Values.hpaMinReplicaCount | default 1 }}                                
+  maxReplicaCount: {{ .Values.hpaMaxReplicaCount | default 10 }}
   triggers:
   - type: memory
     metricType: Utilization

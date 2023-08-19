@@ -3,9 +3,10 @@ extraLabels:
 imageFull:
 command:
 args:
-replicas:
 initContainers:
 containerPortName:
 containerPort:
 hpaMemoryLimit:
 hpaCPULimit:
+hpaMinReplicaCount:
+hpaMaxReplicaCount:

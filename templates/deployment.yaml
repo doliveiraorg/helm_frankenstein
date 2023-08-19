@@ -10,7 +10,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   name: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.replicas | default 1 }}
+  replicas: {{ .Values.hpaMinReplicaCount | default 1 }}
   selector:
     matchLabels:
     {{- include "frankenstein.helmlabels" . | nindent 6 }}     
@@ -28,6 +28,10 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.imageFull | default "nginx" }}
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
         ports:
         - name: {{ .Values.containerPortName | default "http" }}
           containerPort: {{ .Values.containerPort | default 80 }}

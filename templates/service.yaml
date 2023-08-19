@@ -17,7 +17,6 @@ spec:
     targetPort: {{ .Values.containerPort | default 80 }}
   selector:
     {{- include "frankenstein.helmlabels" . | nindent 4 }}
-    app: {{ .Release.Name  }}
     {{- if .Values.extraLabels }}
     {{- toYaml .Values.extraLabels | nindent 4 }}
     {{- end }}
