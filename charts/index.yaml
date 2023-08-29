@@ -3,12 +3,12 @@ entries:
   frankenstein:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-08-20T23:27:10.025480029+08:00"
+    created: "2023-08-30T04:51:27.666273475+08:00"
     description: A Helm chart for Kubernetes
-    digest: 8db6f10da1aabdca4c96391f884c37453ff045268e76ae641e4fcf49c11c5c3d
+    digest: 594699bfa30b3fd58e10c476bd8fcdd553b03b066a5ebb715fc8ada9d5c00a08
     name: frankenstein
     type: application
     urls:
     - frankenstein-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-20T23:27:10.025033204+08:00"
+generated: "2023-08-30T04:51:27.665660987+08:00"

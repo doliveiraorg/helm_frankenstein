@@ -1,6 +1,6 @@
 createDeployment: true
 extraLabels:
-imageFull:
+image:
 command:
 args:
 initContainers:

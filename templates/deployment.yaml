@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: {{ .Values.imageFull | default "nginx" }}
+        image: {{ .Values.image | default "nginx" }}
         resources:
           requests:
             memory: "64Mi"
