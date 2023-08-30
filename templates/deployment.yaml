@@ -36,4 +36,6 @@ spec:
         - name: {{ .Values.containerPortName | default "http" }}
           containerPort: {{ .Values.containerPort | default 80 }}
           protocol: TCP
+      imagePullSecrets:
+      - name: gh-secret
 {{ end }}
