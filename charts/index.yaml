@@ -3,12 +3,18 @@ entries:
   frankenstein:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-08-31T05:31:49.992586706+08:00"
+    created: "2023-08-31T05:51:36.250019137+08:00"
     description: A Helm chart for Kubernetes
-    digest: ade0996fe27d432852eb89abc0ccba2535ecb578a9d44ba4386c04e438c8e84a
+    digest: 6634af8f0e0b6dd05e1dd80728fa89eb47c68b5be75e68d07df413e86714a7fc
+    icon: https://avatars.githubusercontent.com/u/61784505?s=60&v=4
+    keywords:
+    - stonks
+    - banking
     name: frankenstein
+    sources:
+    - https://github.com/doliveiraorg/helm_frankenstein
     type: application
     urls:
     - frankenstein-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-31T05:31:49.992145423+08:00"
+generated: "2023-08-31T05:51:36.249523314+08:00"
