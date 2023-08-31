@@ -1,8 +1,8 @@
-mkdir -p repo/helm-frankenstein
-cp -pr *.yaml  templates/ repo/helm-frankenstein
-helm package repo/helm-frankenstein --destination charts/
-helm repo index charts/
-rm -rf repo/
+mkdir -p temp/helm-frankenstein
+cp -pr *.yaml  templates/ temp/helm-frankenstein
+helm package temp/helm-frankenstein --destination repo/
+helm temp index repo/
+rm -rf temp/
 git add .
 git commit -m "new helm version"
 git push origin main
