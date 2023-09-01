@@ -6,6 +6,7 @@ args:
 initContainers:
 containerPortName:
 containerPort:
+resources:
 hpaMemoryLimit:
 hpaCPULimit:
 hpaMinReplicaCount:

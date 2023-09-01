@@ -29,9 +29,16 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image | default "nginx" }}
         resources:
+        {{- if .Values.resources }}
+        {{- toYaml .Values.resources | nindent 10 }}
+        {{- else }}
           requests:
             memory: "64Mi"
             cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+         {{- end }}
         ports:
         - name: {{ .Values.containerPortName | default "http" }}
           containerPort: {{ .Values.containerPort | default 80 }}
