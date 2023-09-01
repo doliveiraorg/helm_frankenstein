@@ -1,12 +1,12 @@
 createDeployment: true
 extraLabels:
-image: nginx
 command:
 args:
 initContainers:
 containerPortName:
 containerPort:
-imageTag:
+tag:
+customImage:
 resources:
 hpaMemoryLimit:
 hpaCPULimit:

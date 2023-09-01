@@ -27,10 +27,12 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        {{- if .Values.image }}
-        image: {{ .Values.image }}
-        {{- else }}
+        {{- if .Values.customImage }}
+        image: {{ .Values.customImage }}
+        {{- else if .Values.tag }}
         image: ghcr.io/doliveiraorg/{{ .Values.tag }}
+        {{- else }}
+        image: nginx
         {{- end }}
         resources:
         {{- if .Values.resources }}
