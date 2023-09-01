@@ -27,7 +27,11 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: {{ .Values.image | default "nginx" }}
+        {{- if .Values.image }}
+        image: {{ .Values.image }}
+        {{- else }}
+        image: ghcr.io/doliveiraorg/{{ .Values.tag }}
+        {{- end }}
         resources:
         {{- if .Values.resources }}
         {{- toYaml .Values.resources | nindent 10 }}
