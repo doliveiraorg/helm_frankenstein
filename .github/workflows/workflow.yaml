@@ -2,13 +2,14 @@ name: Render Helmchart
 
 on:
   push:
-    - main
+    branches:
+      - main
 
 jobs:
   render:
     runs-on: ubuntu-latest
     steps:
-      - name: Set outputs to number of commits
+      - name: Update chart
         run: |
               mkdir -p temp/helm-frankenstein
               cp -pr *.yaml  templates/ temp/helm-frankenstein
