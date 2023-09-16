@@ -49,6 +49,10 @@ spec:
         - name: {{ .Values.containerPortName | default "http" }}
           containerPort: {{ .Values.containerPort | default 80 }}
           protocol: TCP
+        envFrom:
+        {{- if .Values.extraSecrets }}
+        {{- toYaml .Values.extraSecrets | nindent 8 }}
+        {{- end }}
       imagePullSecrets:
       - name: gh-secret
 {{ end }}
