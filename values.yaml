@@ -13,3 +13,4 @@ hpaMemoryLimit:
 hpaCPULimit:
 hpaMinReplicaCount:
 hpaMaxReplicaCount:
+externalSecret:
