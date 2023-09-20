@@ -3,9 +3,9 @@ entries:
   frankenstein:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-09-18T15:08:46.020683493Z"
+    created: "2023-09-20T18:53:38.303600807Z"
     description: A Helm chart for Kubernetes
-    digest: 0bafeef80cb9bfb03feb175ee25cb0605be96419a13681f8cf88753ca6538a0a
+    digest: 3aaa660dace989f8b98b8abdf9a73814e182814f2837c8d33bf0d60ff56d98dd
     icon: https://avatars.githubusercontent.com/u/61784505?s=60&v=4
     keywords:
     - stonks
@@ -17,4 +17,4 @@ entries:
     urls:
     - frankenstein-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-18T15:08:46.020185982Z"
+generated: "2023-09-20T18:53:38.303063643Z"
