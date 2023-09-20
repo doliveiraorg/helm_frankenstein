@@ -15,3 +15,17 @@ hpaMinReplicaCount:
 hpaMaxReplicaCount:
 externalSecret:
 extraSecrets:
+ingressHost:
+ingressClassName:
+ingressAnnotations:
+ingressPaths:
+# Insgress Paths
+#ingressPaths:
+#  paths:
+#    - path: /
+#      pathType: Prefix
+#      backend:
+#        service:
+#          name: batatinha
+#          port:
+#            number: 8080
