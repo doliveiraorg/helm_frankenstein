@@ -1,4 +1,5 @@
 createDeployment: true
+createDeploymentPreview: false
 createHpa: true
 extraLabels:
 command:

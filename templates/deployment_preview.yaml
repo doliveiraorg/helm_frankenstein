@@ -1,0 +1,58 @@
+{{- if .Values.createDeploymentPreview }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+  {{- include "frankenstein.helmlabels" . | nindent 4 }}
+  {{- if .Values.extraLabels }}
+  {{- toYaml .Values.extraLabels | nindent 4 }}
+  {{- end }}
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.hpaMinReplicaCount | default 1 }}
+  selector:
+    matchLabels:
+    {{- include "frankenstein.helmlabels" . | nindent 6 }}     
+    {{- if .Values.extraLabels }}
+    {{- toYaml .Values.extraLabels | nindent 6 }}
+    {{- end }}
+  template:
+    metadata:
+      labels:
+      {{- include "frankenstein.helmlabels" . | nindent 8 }}
+      {{- if .Values.extraLabels }}
+      {{- toYaml .Values.extraLabels | nindent 8 }}
+      {{- end }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        {{- if .Values.customImage }}
+        image: {{ .Values.customImage }}
+        {{- else if .Values.tag }}
+        image: ghcr.io/doliveiraorg/{{ .Values.tag }}
+        {{- else }}
+        image: nginx
+        {{- end }}
+        resources:
+        {{- if .Values.resources }}
+        {{- toYaml .Values.resources | nindent 10 }}
+        {{- else }}
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+         {{- end }}
+        ports:
+        - name: {{ .Values.containerPortName | default "http" }}
+          containerPort: {{ .Values.containerPort | default 80 }}
+          protocol: TCP
+        envFrom:
+        {{- if .Values.extraSecrets }}
+        {{- toYaml .Values.extraSecrets | nindent 8 }}
+        {{- end }}
+      imagePullSecrets:
+      - name: gh-secret
+{{ end }}
